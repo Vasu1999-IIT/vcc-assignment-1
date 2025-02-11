@@ -1,0 +1,57 @@
+FOR VM2 THE NECESAARY LIBRARIES AND CODE ARE:
+
+LIBRARIES
+
+sudo apt update
+sudo apt install python3 python3-pip -y
+python3 --version
+pip3 --version
+sudo apt install python3-venv -y
+python3 -m venv flask-api
+source flask-api/bin/activate
+pip install Flask
+
+TO RUN THE APP USE
+nano app.py
+
+CODE:
+
+from flask import Flask, jsonify, request
+
+app Flask(_name_)
+
+@app.route('/')
+
+def home():
+
+return "welcome to ubuntu"
+
+# list of users
+
+users = [{"id":1,"name":"ABC"}, {"id":2,"name":"WXY"}, {"id":3,"name":"STU"}]
+
+# GET FEN FOR ALL USER
+
+@app.route('/users', methods=['GET'])
+def get_users():
+ return jsonify(users)
+
+
+
+#create a new user
+@app.route('/users', methods=['POST'])
+def create_user():
+ new_user = request.get_json()
+
+ new_user['id'] = len(users)+1
+
+ users.append(new_user)
+
+ return jsonify(new_user), 201
+
+if _name=='_main_':
+
+ app.run(host = "0.0.0.0", port=8000 debug = True)
+
+NOW RUN THE APP USE
+python app.py
